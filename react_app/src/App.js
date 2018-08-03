@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import fetchRawShotsOfDribbble from './fetcher';
 import Grid from './Grid';
+import Loading from './Loading';
 
 class App extends Component {
 	state = { shots: null, loading: true };
@@ -12,13 +13,13 @@ class App extends Component {
 			this.setState(prevState => {
 				return { ...prevState, shots: shots, loading: false };
 			});
-			console.log(shots);
+			// console.log(shots);
 		});
 	}
 
 	render() {
 		if (this.state.loading) {
-			return <h2>Loading...</h2>;
+			return <Loading />;
 		}
 
 		return (

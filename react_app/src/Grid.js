@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components';
 const BaseGrid = styled.div`
 	display: grid;
 	${props => {
-		console.log(props);
+		// console.log(props);
 		switch (props.type) {
 			case 0:
 				return css`
@@ -27,6 +27,24 @@ const BaseGrid = styled.div`
 		}
 	}};
 `;
+
+const MadeWithLove = styled.div`
+	position: fixed;
+	bottom: 0px;
+	right: 0px;
+	color: white;
+	padding: 6px;
+
+	font-family: 'Raleway', sans-serif;
+	font-size: 14px;
+
+	background-color: #26283f55;
+`;
+
+const Link = styled.a`
+	text-decoration: none;
+	color: white;
+`;
 // 1, 2, 3, 4
 // 100% 50% 33.333% 25%
 const ratio = 400 / 300; // 1.333
@@ -40,7 +58,7 @@ class Grid extends Component {
 
 	handleWindowSizeChange = () => {
 		const h = window.innerWidth / 4 / ratio;
-		console.log(h.toString() + 'px');
+		// console.log(h.toString() + 'px');
 
 		this.setState(prevState => {
 			return {
@@ -62,21 +80,29 @@ class Grid extends Component {
 
 	render() {
 		return (
-			<BaseGrid type={4}>
-				{this.props.shots.map((shot, i) => {
-					return (
-						<Shot
-							h={this.state.h}
-							title={shot.title}
-							image={shot.image}
-							link={shot.link}
-							key={i}
-						>
-							Inner
-						</Shot>
-					);
-				})}
-			</BaseGrid>
+			<div>
+				<BaseGrid type={4}>
+					{this.props.shots.map((shot, i) => {
+						return (
+							<Shot
+								h={this.state.h}
+								title={shot.title}
+								image={shot.image}
+								link={shot.link}
+								key={i}
+							>
+								Inner
+							</Shot>
+						);
+					})}
+				</BaseGrid>
+				<MadeWithLove>
+					Made with ❤ by{' '}
+					<Link href="https://github.com/bregydoc/newtabdribbble">
+						Bregy
+					</Link>
+				</MadeWithLove>
+			</div>
 		);
 	}
 }
