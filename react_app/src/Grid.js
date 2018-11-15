@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Shot from './Shot';
 import styled, { css } from 'styled-components';
+import ToggleSwitch from './Toggle';
 
 const BaseGrid = styled.div`
 	display: grid;
@@ -53,7 +54,8 @@ class Grid extends Component {
 	state = {
 		width: window.innerWidth,
 		height: window.innerHeight,
-		h: '240px'
+		h: '240px',
+		artistMode: localStorage.getItem('artisticmode') === 'true'
 	};
 
 	handleWindowSizeChange = () => {
@@ -83,6 +85,25 @@ class Grid extends Component {
 			<div>
 				<BaseGrid type={4}>
 					{this.props.shots.map((shot, i) => {
+						if (shot.type === 'paper') {
+							if (!this.state.artistMode) {
+								return (
+									<Shot
+										h={this.state.h}
+										title={shot.title}
+										image={shot.image}
+										link={shot.link}
+										key={i}
+										type={shot.type}
+										comment={shot.comment}
+									>
+										Inner
+									</Shot>
+								);
+							} else {
+								return null;
+							}
+						}
 						return (
 							<Shot
 								h={this.state.h}
@@ -90,6 +111,8 @@ class Grid extends Component {
 								image={shot.image}
 								link={shot.link}
 								key={i}
+								type={shot.type}
+								comment={shot.comment}
 							>
 								Inner
 							</Shot>
@@ -102,6 +125,13 @@ class Grid extends Component {
 						Bregy
 					</Link>
 				</MadeWithLove>
+				<ToggleSwitch
+					onToggle={act =>
+						this.setState(s => {
+							return { ...s, artistMode: act };
+						})
+					}
+				/>
 			</div>
 		);
 	}

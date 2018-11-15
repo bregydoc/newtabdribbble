@@ -2,14 +2,13 @@
 	"manifest_version": 2,
 	"name": "New Tab Dribbble",
 	"short_name": "Dribbbletab",
-	"version": "0.25",
+	"version": "0.31",
 	"icons": {
 		"16": "icon16.png",
 		"48": "icon48.png",
 		"128": "icon128.png"
 	},
-	"description":
-		"This is a simple newtab extension for get the popular shots from dribbble making with React and Go.",
+	"description": "This is a simple newtab extension for get the popular shots from dribbble making with React and Go.",
 	"chrome_url_overrides": {
 		"newtab": "index.html"
 	}
